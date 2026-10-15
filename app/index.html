@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loan Calculator</title>
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="base.css">
+<style>
+  form{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin:.75rem 0}
+  form label{display:grid;gap:.3rem}
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.5rem;margin:1rem 0}
+  .summary div{border:1px solid var(--line);border-radius:.6rem;padding:.6rem .8rem;background:var(--card)}
+  .summary b{display:block;font-size:1.4rem;font-variant-numeric:tabular-nums}
+  .summary span{color:var(--muted);font-size:.85rem}
+  .summary .main b{color:var(--accent)}
+  table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.9rem}
+  td,th{padding:.35rem .5rem;border-bottom:1px solid var(--line);text-align:right}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:500}
+  .scroll{max-height:24rem;overflow:auto;border:1px solid var(--line);border-radius:.5rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Loan Calculator</h1>
+  <p class="sub">For mortgages, car loans and personal loans with a fixed rate.</p>
+  <form id="form">
+    <label>Loan amount<input id="amount" inputmode="decimal" value="250000"></label>
+    <label>Interest rate (% a year)<input id="rate" inputmode="decimal" value="5.5"></label>
+    <label>Term (years)<input id="years" inputmode="numeric" value="25"></label>
+    <label>Extra each month<input id="extra" inputmode="decimal" value="0"></label>
+  </form>
+  <div class="summary" aria-live="polite">
+    <div class="main"><b id="monthly">0</b><span>Monthly payment</span></div>
+    <div><b id="interest">0</b><span>Total interest</span></div>
+    <div><b id="total">0</b><span>Total paid</span></div>
+    <div><b id="payoff">–</b><span>Paid off in</span></div>
+  </div>
+  <p class="msg" id="saved"></p>
+  <h2 style="font-size:1rem">Schedule by year</h2>
+  <div class="scroll"><table><thead><tr><th>Year</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="rows"></tbody></table></div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
